@@ -5,7 +5,7 @@
 ## 🔗 Связанные репозитории
 
 - **💻 Приложение-калькулятор:** [swelock/SatisfactoryCalculator](https://github.com/swelock/SatisfactoryCalculator)
-- **🌐 Этот сайт-визитка:** [swelock/SatisfactoryCalculatorSite](https://github.com/swelock/SatisfactoryCalculatorSite)
+- **🌐 Этот сайт-визитка:** [swelock/SatisCalculatorSite](https://github.com/swelock/SatisCalculatorSite)
 
 ## 🎯 Описание
 
