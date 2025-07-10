@@ -1,0 +1,118 @@
+{
+  "name": "Satisfactory Calculator",
+  "short_name": "SatisCalc",
+  "description": "Продвинутый калькулятор производственных цепочек для игры Satisfactory с многопоточным движком и поддержкой 113+ альтернативных рецептов",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "ru",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Космический лифт",
+      "short_name": "Лифт",
+      "description": "Калькулятор фаз космического лифта",
+      "url": "/?tab=elevator",
+      "icons": [
+        {
+          "src": "icons/shortcut-elevator.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "ХАБ уровни",
+      "short_name": "ХАБ",
+      "description": "Калькулятор уровней ХАБ",
+      "url": "/?tab=hub",
+      "icons": [
+        {
+          "src": "icons/shortcut-hub.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Альтернативные рецепты",
+      "short_name": "Alt рецепты",
+      "description": "Калькулятор альтернативных рецептов",
+      "url": "/?tab=recipes",
+      "icons": [
+        {
+          "src": "icons/shortcut-recipes.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "categories": ["games", "productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Главный экран приложения"
+    },
+    {
+      "src": "screenshots/mobile-1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Мобильная версия"
+    }
+  ]
+} 

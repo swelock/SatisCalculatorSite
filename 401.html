@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>401 - Доступ запрещён | Satisfactory Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c5282;
+            --secondary-color: #3182ce;
+            --accent-color: #38b2ac;
+            --success-color: #38a169;
+            --error-color: #e53e3e;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --background-primary: #ffffff;
+            --background-secondary: #f7fafc;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --gradient-primary: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #e2e8f0;
+            --text-secondary: #a0aec0;
+            --background-primary: #1a202c;
+            --background-secondary: #2d3748;
+            --border-color: #4a5568;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --gradient-primary: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gradient-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-icon {
+            font-size: 8rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #ffffff 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .error-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .error-description {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .background-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .factory-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .factory-element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .factory-element:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .factory-element:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+        .factory-element:nth-child(3) { bottom: 30%; left: 20%; animation-delay: 2s; }
+        .factory-element:nth-child(4) { bottom: 20%; right: 25%; animation-delay: 3s; }
+        .factory-element:nth-child(5) { top: 60%; left: 50%; animation-delay: 4s; }
+
+        @media (max-width: 768px) {
+            .error-code { font-size: 4rem; }
+            .error-title { font-size: 2rem; }
+            .error-description { font-size: 1rem; }
+            .error-icon { font-size: 5rem; }
+            .error-actions { flex-direction: column; align-items: center; }
+            .btn { min-width: 200px; justify-content: center; }
+            .controls { 
+                position: relative; 
+                top: auto; 
+                right: auto; 
+                justify-content: center; 
+                margin-bottom: 20px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-pattern"></div>
+    
+    <div class="factory-elements">
+        <i class="factory-element fas fa-cog"></i>
+        <i class="factory-element fas fa-industry"></i>
+        <i class="factory-element fas fa-microchip"></i>
+        <i class="factory-element fas fa-bolt"></i>
+        <i class="factory-element fas fa-cube"></i>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="themeToggle">
+            <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="control-btn" id="langToggle">
+            <span>🇺🇸 EN</span>
+        </button>
+    </div>
+
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fas fa-lock"></i>
+        </div>
+        
+        <div class="error-code" data-translate="error-code">401</div>
+        
+        <h1 class="error-title" data-translate="error-title">Доступ запрещён</h1>
+        
+        <p class="error-description" data-translate="error-description">
+            Для доступа к этой области нужна авторизация. Убедитесь, что вы вошли в систему.
+        </p>
+
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary" data-translate="btn-home">
+                <i class="fas fa-home"></i>
+                <span>На главную</span>
+            </a>
+            <a href="javascript:history.back()" class="btn btn-secondary" data-translate="btn-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Назад</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Translation system for error pages
+        const translations = {
+          "ru": {
+                    "error-code": "401",
+                    "error-title": "Доступ запрещён",
+                    "error-description": "Для доступа к этой области нужна авторизация. Убедитесь, что вы вошли в систему.",
+                    "btn-home": "На главную",
+                    "btn-back": "Назад",
+                    "theme-light-tooltip": "Переключить на тёмную тему",
+                    "theme-dark-tooltip": "Переключить на светлую тему",
+                    "lang-to-english": "Switch to English",
+                    "lang-to-russian": "Переключить на русский"
+          },
+          "en": {
+                    "error-code": "401",
+                    "error-title": "Unauthorized",
+                    "error-description": "Authorization required to access this area. Make sure you're logged in.",
+                    "btn-home": "Home",
+                    "btn-back": "Back",
+                    "theme-light-tooltip": "Switch to dark theme",
+                    "theme-dark-tooltip": "Switch to light theme",
+                    "lang-to-english": "Switch to English",
+                    "lang-to-russian": "Переключить на русский"
+          }
+};
+
+        class ErrorPageControls {
+            constructor() {
+                this.currentLang = localStorage.getItem('language') || 'ru';
+                this.currentTheme = localStorage.getItem('theme') || this.getSystemTheme();
+                this.init();
+            }
+
+            getSystemTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            }
+
+            init() {
+                this.setupThemeToggle();
+                this.setupLanguageToggle();
+                this.applyStoredSettings();
+            }
+
+            setupThemeToggle() {
+                const themeToggle = document.getElementById('themeToggle');
+                const themeIcon = document.getElementById('themeIcon');
+                
+                themeToggle.addEventListener('click', () => {
+                    this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+                    this.applyTheme();
+                    this.saveSettings();
+                    
+                    themeIcon.style.transform = 'rotate(360deg)';
+                    setTimeout(() => {
+                        themeIcon.style.transform = 'rotate(0deg)';
+                    }, 300);
+                });
+            }
+
+            setupLanguageToggle() {
+                const langToggle = document.getElementById('langToggle');
+                
+                langToggle.addEventListener('click', () => {
+                    this.currentLang = this.currentLang === 'ru' ? 'en' : 'ru';
+                    this.applyLanguage();
+                    this.updateLanguageButton();
+                    this.saveSettings();
+                    
+                    langToggle.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        langToggle.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            }
+
+            applyTheme() {
+                const body = document.body;
+                const themeIcon = document.getElementById('themeIcon');
+                const themeToggle = document.getElementById('themeToggle');
+                const currentTranslations = translations[this.currentLang];
+                
+                if (this.currentTheme === 'dark') {
+                    body.setAttribute('data-theme', 'dark');
+                    themeIcon.className = 'fas fa-sun';
+                    themeToggle.title = currentTranslations['theme-dark-tooltip'];
+                } else {
+                    body.removeAttribute('data-theme');
+                    themeIcon.className = 'fas fa-moon';
+                    themeToggle.title = currentTranslations['theme-light-tooltip'];
+                }
+            }
+
+            applyLanguage() {
+                const elements = document.querySelectorAll('[data-translate]');
+                const currentTranslations = translations[this.currentLang];
+                
+                elements.forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (currentTranslations[key]) {
+                        if (element.tagName === 'SPAN') {
+                            element.textContent = currentTranslations[key];
+                        } else {
+                            element.textContent = currentTranslations[key];
+                        }
+                    }
+                });
+                
+                // Update theme button tooltip
+                this.updateThemeTooltip();
+                
+                document.documentElement.lang = this.currentLang;
+            }
+            
+            updateThemeTooltip() {
+                const themeToggle = document.getElementById('themeToggle');
+                const currentTranslations = translations[this.currentLang];
+                
+                if (this.currentTheme === 'dark') {
+                    themeToggle.title = currentTranslations['theme-dark-tooltip'];
+                } else {
+                    themeToggle.title = currentTranslations['theme-light-tooltip'];
+                }
+            }
+
+            updateLanguageButton() {
+                const langToggle = document.getElementById('langToggle');
+                const currentTranslations = translations[this.currentLang];
+                
+                if (this.currentLang === 'ru') {
+                    langToggle.innerHTML = '<span>🇺🇸 EN</span>';
+                    langToggle.title = currentTranslations['lang-to-english'];
+                } else {
+                    langToggle.innerHTML = '<span>🇷🇺 RU</span>';
+                    langToggle.title = currentTranslations['lang-to-russian'];
+                }
+            }
+
+            applyStoredSettings() {
+                this.applyTheme();
+                this.applyLanguage();
+                this.updateLanguageButton();
+            }
+
+            saveSettings() {
+                localStorage.setItem('theme', this.currentTheme);
+                localStorage.setItem('language', this.currentLang);
+            }
+        }
+
+        // Initialize controls when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            new ErrorPageControls();
+        });
+    </script>
+</body>
+</html> 

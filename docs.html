@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация - SatisCalculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css?v=1.4" rel="stylesheet">
+    <style>
+        body {
+            background-color: var(--background-primary);
+            color: var(--text-primary);
+        }
+        .docs-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: var(--background-secondary);
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            line-height: 1.7;
+        }
+        .docs-container h1, .docs-container h2, .docs-container h3 {
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .docs-container h1 {
+            font-size: 2.5rem;
+        }
+        .docs-container h2 {
+            font-size: 2rem;
+        }
+        .docs-container h3 {
+            font-size: 1.5rem;
+        }
+        .docs-container p {
+            margin-bottom: 15px;
+        }
+        .docs-container a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .docs-container a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        .docs-container code {
+            background: rgba(0,0,0,0.05);
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-family: 'Fira Code', monospace;
+        }
+        .docs-container pre {
+            background: #1a1a1a;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        .docs-container pre code {
+            background: none;
+            padding: 0;
+        }
+        .docs-container ul {
+            padding-left: 20px;
+        }
+        .docs-container li {
+            margin-bottom: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin: 20px 0 0 20px;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .back-link i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> На главную</a>
+    <div class="docs-container">
+        <h1>Satisfactory Calculator 🏭</h1>
+        <p>
+            Продвинутый калькулятор производственных цепочек для игры Satisfactory с красивым интерфейсом и мощными возможностями расчета.
+        </p>
+
+        <h2>✨ Основные возможности</h2>
+        <h3>🎯 Расчеты производства</h3>
+        <ul>
+            <li><strong>Космический лифт</strong> - планирование фаз строительства</li>
+            <li><strong>Улучшения ХАБа</strong> - расчет всех уровней технологий</li>
+            <li><strong>Произвольные предметы</strong> - любые производственные цепочки</li>
+            <li><strong>Альтернативные рецепты</strong> - 113+ альтернативных рецептов</li>
+            <li><strong>Настройка скорости</strong> - индивидуальные темпы производства</li>
+        </ul>
+        <h3>🚀 Оптимизация и производительность</h3>
+        <ul>
+            <li><strong>Многопоточные вычисления</strong> - быстрые расчеты больших цепочек</li>
+            <li><strong>Умное кэширование</strong> - мгновенные повторные расчеты</li>
+            <li><strong>Оптимизация рецептов</strong> - автоматический выбор лучших рецептов</li>
+            <li><strong>Визуализация дерева</strong> - красивое отображение производственных цепочек</li>
+        </ul>
+        <h3>🎨 Современный интерфейс</h3>
+        <ul>
+            <li><strong>Dark Theme</strong> - современная темная тема GitHub-стиля</li>
+            <li><strong>Адаптивные компоненты</strong> - интерфейс подстраивается под содержимое</li>
+            <li><strong>Анимации и эффекты</strong> - плавные переходы и hover-эффекты</li>
+            <li><strong>Иконки зданий</strong> - визуальные индикаторы для всех типов производства</li>
+        </ul>
+
+        <h2>📥 Установка</h2>
+        <h3>Предварительные требования</h3>
+        <ul>
+            <li><strong>Qt 6.0+</strong> - библиотека для GUI (включая qmake)</li>
+            <li><strong>C++17</strong> совместимый компилятор (MSVC 2019+, GCC 9+, Clang 10+)</li>
+            <li><strong>qmake</strong> - система сборки Qt (входит в Qt SDK)</li>
+        </ul>
+        <h3>Сборка из исходников</h3>
+        <h4>Windows</h4>
+        <pre><code>git clone https://github.com/swelock/SatisfactoryCalculator.git
+cd satisfactory-calculator
+scripts\build.bat release</code></pre>
+        <h4>Linux/macOS</h4>
+        <pre><code>git clone https://github.com/swelock/SatisfactoryCalculator.git
+cd satisfactory-calculator
+./scripts/build.sh release</code></pre>
+        <h4>Ручная сборка (qmake)</h4>
+        <pre><code># Генерация Makefile
+qmake CONFIG+=release satiscalculator.pro
+
+# Сборка
+make -j$(nproc)  # Linux/macOS
+nmake            # Windows</code></pre>
+        <h3>Готовые релизы</h3>
+        <p>Скачайте последнюю версию: <a href="https://github.com/swelock/SatisfactoryCalculator/releases" target="_blank">Releases</a></p>
+
+        <h2>🚀 Быстрый старт</h2>
+        <ol>
+            <li><strong>Запустите приложение</strong></li>
+            <li><strong>Выберите тип расчета:</strong>
+                <ul>
+                    <li>🚀 Космический лифт</li>
+                    <li>🏭 Улучшения ХАБа</li>
+                    <li>⚙️ Произвольный расчет</li>
+                </ul>
+            </li>
+            <li><strong>Настройте параметры</strong> (скорость производства, альтернативные рецепты)</li>
+            <li><strong>Нажмите "Рассчитать"</strong></li>
+            <li><strong>Получите детальный план</strong> с деревом производства и списком ресурсов</li>
+        </ol>
+
+        <h2>📖 Документация</h2>
+        <h3>Структура проекта</h3>
+        <pre><code>satisfactory-calculator/
+├── src/                    # Исходные файлы
+│   ├── main.cpp           # Точка входа
+│   ├── mainwindow.cpp     # Главное окно
+│   ├── calculator_engine.cpp  # Движок расчетов
+│   └── game_data.cpp      # Данные игры
+├── include/               # Заголовочные файлы
+├── data/                  # Данные игры (рецепты, предметы)
+├── docs/                  # Документация
+├── tests/                 # Unit тесты
+└── scripts/              # Скрипты сборки и CI/CD
+</code></pre>
+        <h3>Архитектура</h3>
+        <ul>
+            <li><strong>CalculatorEngine</strong> - оптимизированный движок вычислений</li>
+            <li><strong>RecipeManager</strong> - управление рецептами и альтернативами</li>
+            <li><strong>GameData</strong> - данные игры (предметы, рецепты, требования)</li>
+            <li><strong>MainWindow</strong> - пользовательский интерфейс</li>
+        </ul>
+        
+        <h2>🤝 Вклад в проект</h2>
+        <p>Мы приветствуем вклад сообщества! См. <a href="https://github.com/swelock/SatisfactoryCalculator/blob/main/CONTRIBUTING.md" target="_blank">CONTRIBUTING.md</a> для руководства.</p>
+        <h3>Типы вкладов</h3>
+        <ul>
+            <li>🐛 <strong>Исправление багов</strong></li>
+            <li>✨ <strong>Новые возможности</strong></li>
+            <li>📝 <strong>Улучшение документации</strong></li>
+            <li>🧪 <strong>Добавление тестов</strong></li>
+            <li>🌍 <strong>Переводы</strong></li>
+        </ul>
+        <h3>Процесс разработки</h3>
+        <ol>
+            <li>Fork репозитория</li>
+            <li>Создайте feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+            <li>Commit изменения (<code>git commit -m 'Add amazing feature'</code>)</li>
+            <li>Push в branch (<code>git push origin feature/amazing-feature</code>)</li>
+            <li>Откройте Pull Request</li>
+        </ol>
+
+        <h2>📋 Roadmap</h2>
+        <h3>v1.1.0 (Q1 2025)</h3>
+        <ul>
+            <li>Экспорт в CSV/JSON</li>
+            <li>Сохранение проектов</li>
+            <li>Сравнение альтернативных решений</li>
+        </ul>
+        <h3>v1.2.0 (Q2 2025)</h3>
+        <ul>
+            <li>Планировщик фабрик</li>
+            <li>3D визуализация</li>
+            <li>Интеграция с модами</li>
+        </ul>
+        <h3>v2.0.0 (Q3 2025)</h3>
+        <ul>
+            <li>Веб-версия</li>
+            <li>Многопользовательские проекты</li>
+            <li>ИИ-помощник для оптимизации</li>
+        </ul>
+
+        <h2>🔧 Технические детали</h2>
+        <h3>Использованные технологии</h3>
+        <ul>
+            <li><strong>Qt 6</strong> - кроссплатформенный GUI фреймворк</li>
+            <li><strong>C++17</strong> - современный стандарт C++</li>
+            <li><strong>qmake</strong> - система сборки Qt</li>
+            <li><strong>GitHub Actions</strong> - CI/CD</li>
+        </ul>
+        <h3>Оптимизации</h3>
+        <ul>
+            <li><strong>Многоуровневое кэширование</strong> - до 95% cache hit rate</li>
+            <li><strong>Lazy loading</strong> - загрузка данных по требованию</li>
+            <li><strong>SIMD операции</strong> - векторизация вычислений</li>
+            <li><strong>Memory pooling</strong> - эффективное управление памятью</li>
+        </ul>
+
+        <h2>📄 Лицензия</h2>
+        <p>Этот проект лицензирован под MIT License - см. <a href="https://github.com/swelock/SatisfactoryCalculator/blob/main/LICENSE" target="_blank">LICENSE</a> файл для деталей.</p>
+        
+        <h2>🙏 Благодарности</h2>
+        <ul>
+            <li><strong>Coffee Stain Studios</strong> - за создание Satisfactory</li>
+            <li><strong>Qt Community</strong> - за отличный фреймворк</li>
+            <li><strong>Satisfactory Community</strong> - за вдохновение и обратную связь</li>
+            <li><strong>Всем контрибьюторам</strong> - за улучшения проекта</li>
+        </ul>
+
+        <h2>📞 Контакты</h2>
+        <ul>
+            <li><strong>Issues:</strong> <a href="https://github.com/swelock/SatisfactoryCalculator/issues" target="_blank">GitHub Issues</a></li>
+            <li><strong>Discussions:</strong> <a href="https://github.com/swelock/SatisfactoryCalculator/discussions" target="_blank">GitHub Discussions</a></li>
+            <li><strong>Discord:</strong> Сообщество Satisfactory</li>
+        </ul>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,59 @@
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных файлов
+Disallow: /sw.js
+Disallow: /*.json$
+Disallow: /site.webmanifest
+
+# Разрешаем основные страницы
+Allow: /index.html
+Allow: /404.html
+Allow: /400.html
+Allow: /401.html
+Allow: /403.html
+Allow: /405.html
+Allow: /406.html
+Allow: /408.html
+Allow: /409.html
+Allow: /500.html
+Allow: /501.html
+Allow: /502.html
+Allow: /503.html
+Allow: /504.html
+
+# Разрешаем статические ресурсы
+Allow: /styles.css
+Allow: /script.js
+Allow: /icons/
+Allow: /screenshots/
+
+# Карта сайта
+Sitemap: https://satiscalculator.com/sitemap.xml
+
+# Скорость сканирования для разных поисковиков
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Yandex
+Crawl-delay: 2
+
+User-agent: Bingbot
+Crawl-delay: 1
+
+# Специальные правила для архивирующих ботов
+User-agent: ia_archiver
+Allow: /
+
+# Запрещаем спам-ботам
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Кэш директивы
+Cache-Control: max-age=86400 

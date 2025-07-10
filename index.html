@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Satisfactory Calculator - Оптимизируй свою фабрику</title>
+    <meta name="title" content="Satisfactory Calculator - Продвинутый калькулятор производственных цепочек">
+    <meta name="description" content="Мощный Qt-калькулятор для Satisfactory с многопоточным движком, 113+ альтернативными рецептами и производительностью до 10,000 предметов/сек. Скачать бесплатно!">
+    <meta name="keywords" content="Satisfactory, калькулятор, производственные цепочки, Qt, альтернативные рецепты, космический лифт, хаб, оптимизация фабрики">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="ru">
+    <meta name="author" content="SatisCalculator Team">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://satiscalculator.com/">
+    <meta property="og:title" content="Satisfactory Calculator - Продвинутый калькулятор производственных цепочек">
+    <meta property="og:description" content="Мощный Qt-калькулятор для Satisfactory с многопоточным движком, 113+ альтернативными рецептами и производительностью до 10,000 предметов/сек.">
+    <meta property="og:image" content="https://satiscalculator.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://satiscalculator.com/">
+    <meta property="twitter:title" content="Satisfactory Calculator - Продвинутый калькулятор производственных цепочек">
+    <meta property="twitter:description" content="Мощный Qt-калькулятор для Satisfactory с многопоточным движком, 113+ альтернативными рецептами и производительностью до 10,000 предметов/сек.">
+    <meta property="twitter:image" content="https://satiscalculator.com/og-image.jpg">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- PWA -->
+    <meta name="application-name" content="SatisCalculator">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="SatisCalculator">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="msapplication-tap-highlight" content="no">
+    
+    <!-- Performance -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="preload" href="styles.css?v=1.1" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Satisfactory Calculator",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Windows, Linux, macOS",
+        "description": "Продвинутый калькулятор производственных цепочек для игры Satisfactory с многопоточным движком и поддержкой 113+ альтернативных рецептов",
+        "url": "https://satiscalculator.com",
+        "downloadUrl": "https://github.com/satisfactory-calculator/satisfactory-calculator/releases",
+        "author": {
+            "@type": "Organization",
+            "name": "SatisCalculator Team"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "156"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
+    <!-- Styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css?v=1.7" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-calculator"></i>
+                    <span>SatisCalculator</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#performance" data-translate="nav-performance">Performance</a></li>
+                    <li><a href="#features" data-translate="nav-features">Features</a></li>
+                    <li><a href="#developers" data-translate="nav-developers">Developers</a></li>
+                    <li><a href="#faq" data-translate="nav-faq">FAQ</a></li>
+                    <li><a href="#download" data-translate="nav-download">Download</a></li>
+                    <li><a href="#contact" data-translate="nav-contact">Contact</a></li>
+                </ul>
+                
+                <div class="nav-controls">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="lang-toggle" id="langToggle">
+                        <span class="flag-icon">🇺🇸</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span data-translate="hero-badge">Next Generation</span>
+                </div>
+                <h1 class="hero-main-title" data-translate="hero-title">Satisfactory Calculator</h1>
+                
+                <div class="hero-tagline">
+                    <h2 data-translate="hero-tagline">Создан для —</h2>
+                    <div class="rotating-words">
+                        <span class="word active" data-translate="hero-word1">Производительности</span>
+                        <span class="word" data-translate="hero-word2">Инженеров</span>
+                        <span class="word" data-translate="hero-word3">Эффективности</span>
+                        <span class="word" data-translate="hero-word4">Инноваций</span>
+                    </div>
+                </div>
+
+                <p class="hero-subtitle" data-translate="hero-subtitle">Продвинутый калькулятор производственных цепочек с красивым интерфейсом и мощными возможностями расчета</p>
+                
+                <div class="tech-stack">
+                    <div class="tech-item">Qt6</div>
+                    <div class="tech-item">C++17</div>
+                    <div class="tech-item">Multi-Threading</div>
+                    <div class="tech-item">Cache 95%+</div>
+                    <div class="tech-item">10K items/sec</div>
+                </div>
+
+                <p class="hero-description" data-translate="hero-description">Qt-приложение с многопоточным движком, 113+ альтернативными рецептами, кэшированием 95%+ и производительностью до 10,000 предметов/сек</p>
+                
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary btn-large">
+                        <i class="fas fa-download"></i>
+                        <span data-translate="btn-download">Скачать приложение</span>
+                    </a>
+                    <a href="#demo" class="btn btn-secondary btn-outline">
+                        <i class="fas fa-play"></i>
+                        <span data-translate="btn-demo">Смотреть демо</span>
+                    </a>
+                </div>
+                
+                <div class="scroll-indicator">
+                    <span data-translate="scroll-hint">Keep scrolling</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="app-preview">
+                    <div class="app-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="window-title">Satisfactory Calculator</div>
+                        </div>
+                                                 <div class="window-content">
+                             <div class="calculator-interface">
+                                 <div class="tabs-preview">
+                                     <div class="tab active" data-tab="elevator">
+                                         <i class="fas fa-rocket"></i>
+                                         <span>Космический лифт</span>
+                                     </div>
+                                     <div class="tab" data-tab="hub">
+                                         <i class="fas fa-graduation-cap"></i>
+                                         <span>ХАБ</span>
+                                     </div>
+                                     <div class="tab" data-tab="custom">
+                                         <i class="fas fa-cog"></i>
+                                         <span>Произвольный</span>
+                                     </div>
+                                     <div class="tab" data-tab="recipes">
+                                         <i class="fas fa-flask"></i>
+                                         <span>Alt рецепты</span>
+                                     </div>
+                                 </div>
+                                 
+                                 <!-- Космический лифт -->
+                                 <div class="tab-content active" data-content="elevator">
+                                     <div class="calc-item">
+                                         <i class="fas fa-rocket"></i>
+                                         <span>Space Elevator Phase 5</span>
+                                         <span class="quantity">Ready</span>
+                                     </div>
+                                     <div class="calc-resources">
+                                         <div class="resource">
+                                             <i class="fas fa-microchip"></i>
+                                             Thermal Propulsion Rocket: 1/min
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-cogs"></i>
+                                             Кэш: 95.3% hit rate
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-bolt"></i>
+                                             Расчет: 0.02 сек
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <!-- ХАБ -->
+                                 <div class="tab-content" data-content="hub">
+                                     <div class="calc-item">
+                                         <i class="fas fa-graduation-cap"></i>
+                                         <span>HUB Tier 9: Advanced Steel Production</span>
+                                         <span class="quantity">9/9</span>
+                                     </div>
+                                     <div class="calc-resources">
+                                         <div class="resource">
+                                             <i class="fas fa-industry"></i>
+                                             Steel Beam: 500/min
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-cube"></i>
+                                             Steel Pipe: 200/min
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-tachometer-alt"></i>
+                                             Multi-threading: активен
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <!-- Произвольный -->
+                                 <div class="tab-content" data-content="custom">
+                                     <div class="calc-item">
+                                         <i class="fas fa-cog"></i>
+                                         <span>Reinforced Iron Plate</span>
+                                         <span class="quantity">x100</span>
+                                     </div>
+                                     <div class="calc-resources">
+                                         <div class="resource">
+                                             <i class="fas fa-cube"></i>
+                                             Iron Plate: 600/min
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-wrench"></i>
+                                             Screw: 1200/min
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-chart-line"></i>
+                                             Оптимизация: включена
+                                         </div>
+                                     </div>
+                                 </div>
+                                 
+                                 <!-- Alt рецепты -->
+                                 <div class="tab-content" data-content="recipes">
+                                     <div class="calc-item">
+                                         <i class="fas fa-flask"></i>
+                                         <span>Alternative Recipes</span>
+                                         <span class="quantity">113+</span>
+                                     </div>
+                                     <div class="calc-resources">
+                                         <div class="resource">
+                                             <i class="fas fa-check-circle"></i>
+                                             Solid Steel Ingot: активен
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-check-circle"></i>
+                                             Pure Iron Ingot: активен
+                                         </div>
+                                         <div class="resource">
+                                             <i class="fas fa-brain"></i>
+                                             Авто-выбор: умная оптимизация
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Built for Performance Section -->
+    <section id="performance" class="vold-section performance-section">
+        <div class="container">
+            <div class="vold-content">
+                <h2 class="vold-tagline" data-translate="built-for-performance-title">Built for —<br>Performance</h2>
+                
+                <p class="vold-description" data-translate="built-for-performance-desc">
+                    Мы используем передовые технологии расчетов, чтобы обеспечить истинно быстрый опыт вычислений для наших пользователей. 
+                    Это быстро и мощно — поэтому вы можете сосредоточиться на том, что важно.
+                </p>
+                
+                <div class="tech-stack-vold">
+                    <div class="tech-item-vold" data-translate="tech-qt">Qt6</div>
+                    <div class="tech-item-vold" data-translate="tech-cpp">C++17</div>
+                    <div class="tech-item-vold" data-translate="tech-multithreading">Multi-Threading</div>
+                    <div class="tech-item-vold" data-translate="tech-cache">Cache Engine</div>
+                    <div class="tech-item-vold" data-translate="tech-simd">SIMD</div>
+                    <div class="tech-item-vold" data-translate="tech-memory-pool">Memory Pool</div>
+                </div>
+                
+                <div class="scroll-hint-section">
+                    <span data-translate="keep-scrolling">Keep scrolling.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Built for Engineers Section -->
+    <section id="engineers" class="vold-section engineers-section">
+        <div class="container">
+            <div class="vold-content">
+                <h2 class="vold-tagline" data-translate="built-for-engineers-title">Built for<br>Engineers</h2>
+                
+                <p class="vold-description" data-translate="built-for-engineers-desc">
+                    Satisfactory Calculator разработан для лучшего инженерного опыта. Он создан так, чтобы быть понятным каждому, 
+                    с минимальной кривой обучения, и говорит на языке инженеров.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- All-in-one Platform Section -->
+    <section id="platform" class="vold-section platform-section">
+        <div class="container">
+            <div class="vold-content">
+                <h3 class="platform-subtitle" data-translate="platform-subtitle">Универсальная платформа для расчета вашей фабрики</h3>
+                
+                <div class="overview-section">
+                    <h2 class="overview-title" data-translate="overview-title">Overview — Overview — Overview</h2>
+                    
+                    <div class="platform-description">
+                        <h1 class="platform-main" data-translate="platform-main">
+                            Универсальная платформа означает, что Satisfactory Calculator — это продвинутая система, 
+                            которая делает все, что вам нужно для расчета производства — и вашего бизнеса.
+                        </h1>
+                        
+                        <div class="scroll-hint-section">
+                            <span data-translate="keep-scrolling">Keep scrolling.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Sections -->
+    <section id="features" class="vold-features">
+        <div class="container">
+            <!-- Space Elevator Feature -->
+            <div class="vold-feature-section">
+                <div class="feature-label">Space Elevator</div>
+                <h2 class="vold-feature-title" data-translate="feature-elevator-title">Управляйте фазами лифта — Проще чем когда-либо.</h2>
+                <p class="vold-feature-desc" data-translate="feature-elevator-vold-desc">
+                    Минималистичный калькулятор фаз — это означает, что каждый элемент, представленный на экране, 
+                    продуман и полезен, так что вы можете сосредоточиться на самом важном.
+                </p>
+            </div>
+
+            <!-- Analytics Feature -->
+            <div class="vold-feature-section">
+                <div class="feature-label">Production Analytics</div>
+                <h2 class="vold-feature-title" data-translate="feature-analytics-title">Визуализируйте вашу производительность. На языке, который вы понимаете.</h2>
+                <p class="vold-feature-desc" data-translate="feature-analytics-vold-desc">
+                    Отслеживайте ресурсы, понимайте, насколько хорошо каждая из ваших стратегий работает для вашего успеха.
+                </p>
+            </div>
+
+            <!-- Recipe Manager Feature -->
+            <div class="vold-feature-section">
+                <div class="feature-label">Recipe Manager</div>
+                <h2 class="vold-feature-title" data-translate="feature-recipes-title">Управляйте рецептами легко в облаке.</h2>
+                <p class="vold-feature-desc" data-translate="feature-recipes-vold-desc">
+                    Сложный менеджер рецептов, который бесшовно подключен к базе альтернативных рецептов.
+                </p>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="vold-summary">
+                <h1 class="summary-text" data-translate="summary-text">
+                    <strong>Многопоточный.</strong> Настраиваемый интерфейс. Drag and drop планировщик фабрики. 
+                    Редактор производства на множественных размерах экранов. Автоматизированная оптимизация. 
+                    Интегрированный менеджер рецептов. <strong>Быстрая производительность, простота использования.</strong>
+                </h1>
+                
+                <div class="scroll-hint-section">
+                    <span data-translate="keep-scrolling">Keep scrolling.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Built for Developers Section -->
+    <section id="developers" class="vold-section developers-section">
+        <div class="container">
+            <div class="vold-content">
+                <h2 class="vold-tagline" data-translate="built-for-developers-title">Built for —<br>Developers</h2>
+                
+                <p class="vold-description" data-translate="built-for-developers-desc">
+                    Мы считаем, что для успешного предоставления лучшего опыта расчета производства, 
+                    нам нужно сосредоточиться на разработчиках в первую очередь. Мы одержимо устраняем 
+                    ненужную сложность и посторонние детали, так что вы можете настроить и запустить 
+                    Satisfactory Calculator с легкостью, прямо с первого дня.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2>Как это работает</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Выберите цель</h3>
+                        <p>Укажите предмет, фазу лифта или уровень хаба для расчета</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Установите количество</h3>
+                        <p>Определите нужное количество предметов или целей</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Получите результат</h3>
+                        <p>Моментально получайте точный список всех необходимых ресурсов</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Стройте эффективно</h3>
+                        <p>Используйте данные для оптимального планирования фабрики</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="benefits-content">
+                <div class="benefits-text">
+                    <h2>Почему выбирают SatisCalculator?</h2>
+                    <ul class="benefits-list">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Многопоточные вычисления с памятью < 50 МБ</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Умное кэширование для мгновенных пересчетов</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>113+ альтернативных рецептов с автооптимизацией</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Кроссплатформенность: Windows, Linux, macOS</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Открытый исходный код и активное сообщество</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="benefits-image">
+                    <div class="stat-card">
+                        <div class="stat-number">10,000</div>
+                        <div class="stat-label">Предметов/сек</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">113+</div>
+                        <div class="stat-label">Альтернативных рецептов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">95%+</div>
+                        <div class="stat-label">Cache hit rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="technology" class="technology">
+        <div class="container">
+            <h2>Технические особенности</h2>
+            <div class="tech-content">
+                <div class="tech-text">
+                    <h3>Открытый исходный код</h3>
+                    <p>Полностью открытый проект на GitHub с активным сообществом разработчиков</p>
+                    
+                    <div class="tech-specs">
+                        <div class="spec-item">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <a href="https://github.com/swelock/SatisfactoryCalculator" style="text-decoration: none; color: inherit;">
+                                    <strong>GitHub Repository</strong>
+                                    <span>MIT лицензия, CI/CD, автоматическая сборка</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <strong>C++17 + Qt 6</strong>
+                                <span>Современные технологии, кроссплатформенность</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <div>
+                                <strong>Высокая производительность</strong>
+                                <span>SIMD операции, memory pooling, lazy loading</span>
+                            </div>
+                        </div>
+                        
+                        <div class="spec-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <strong>Активное сообщество</strong>
+                                <span>Issues, Discussions, Discord, вклад в развитие</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-image">
+                    <div class="code-preview">
+                        <div class="code-header">
+                            <span class="code-lang">C++17</span>
+                            <span class="code-file">calculator_engine.cpp</span>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line"><span class="comment">// Многопоточный движок расчетов</span></div>
+                            <div class="code-line"><span class="keyword">class</span> <span class="class">CalculatorEngine</span> {</div>
+                            <div class="code-line">  <span class="keyword">private:</span></div>
+                            <div class="code-line">    <span class="type">QCache</span>&lt;<span class="type">QString</span>, <span class="type">CacheEntry</span>&gt; <span class="var">m_cache</span>;</div>
+                            <div class="code-line">    <span class="type">QThread</span>* <span class="var">m_calculationThread</span>;</div>
+                            <div class="code-line">    <span class="keyword">int</span> <span class="var">m_cacheHits</span> = <span class="number">0</span>;</div>
+                            <div class="code-line">};</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 data-translate="faq-title">Часто задаваемые вопросы</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" data-translate="faq-q1">
+                        <h3>Поддерживает ли калькулятор новые обновления Satisfactory?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq-a1">Да! Мы регулярно обновляем базу данных рецептов и предметов в соответствии с последними обновлениями игры. Update 8 полностью поддерживается.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" data-translate="faq-q2">
+                        <h3>Работает ли приложение на macOS и Linux?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq-a2">Да, благодаря Qt 6 приложение работает на Windows, macOS и Linux. Скачайте исходный код и соберите для своей системы.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" data-translate="faq-q3">
+                        <h3>Как настроить альтернативные рецепты?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq-a3">В разделе "Alt рецепты" вы можете выбрать какие альтернативные рецепты использовать. Калькулятор автоматически выберет оптимальные варианты или вы можете настроить вручную.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" data-translate="faq-q4">
+                        <h3>Сколько места занимает программа?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq-a4">Приложение очень легковесное - менее 50 МБ оперативной памяти и быстрый запуск менее чем за 2 секунды. Размер установочного файла около 25 МБ.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" data-translate="faq-q5">
+                        <h3>Есть ли поддержка мультиплеера?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq-a5">Калькулятор работает автономно и не требует подключения к игре. Вы можете использовать его для планирования фабрики в одиночной игре или мультиплеере.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" data-translate="faq-q6">
+                        <h3>Планируется ли веб-версия?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-translate="faq-a6">В настоящее время мы фокусируемся на нативном приложении для лучшей производительности. Веб-версия рассматривается для будущих релизов.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="download">
+        <div class="container">
+            <div class="download-content">
+                <h2>Готовы оптимизировать свою фабрику?</h2>
+                <p>Скачайте SatisCalculator прямо сейчас и начните строить эффективнее уже сегодня!</p>
+                
+                <div class="download-options">
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Windows</h3>
+                        <p>Версия 1.0.0</p>
+                        <a href="https://github.com/swelock/SatisfactoryCalculator" class="btn btn-download">
+                            <i class="fas fa-download"></i>
+                            Скачать для Windows
+                        </a>
+                    </div>
+                    
+                    <div class="download-card">
+                        <div class="download-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>Исходный код</h3>
+                        <p>Сборка из исходников</p>
+                        <a href="https://github.com/swelock/SatisfactoryCalculator" class="btn btn-download">
+                            <i class="fab fa-github"></i>
+                            Открыть на GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="system-requirements">
+                    <h4>Системные требования:</h4>
+                    <p>Qt 6.0+, C++17 компилятор, Windows/Linux/macOS, <50MB RAM, <2 сек старт</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-calculator"></i>
+                        <span>SatisCalculator</span>
+                    </div>
+                    <p>Лучший калькулятор ресурсов для Satisfactory</p>
+                    <div class="social-links">
+                        <a href="https://github.com/swelock/SatisfactoryCalculator"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/satisfactory"><i class="fab fa-discord"></i></a>
+                        <a href="https://reddit.com/r/SatisfactoryGame"><i class="fab fa-reddit"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Ссылки</h4>
+                    <ul>
+                        <li><a href="#features">Возможности</a></li>
+                        <li><a href="#download">Скачать</a></li>
+                        <li><a href="docs.html">Документация</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Поддержка</h4>
+                    <ul>
+                        <li><a href="#">Связаться с нами</a></li>
+                        <li><a href="#">Сообщить о баге</a></li>
+                        <li><a href="#">Предложить улучшение</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Сообщество</h4>
+                    <ul>
+                        <li><a href="#">Discord сервер</a></li>
+                        <li><a href="#">Reddit</a></li>
+                        <li><a href="https://github.com/swelock/SatisfactoryCalculator">GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 SatisCalculator. Все права защищены.</p>
+                <p>Не связано с Coffee Stain Studios или игрой Satisfactory</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=1.4"></script>
+</body>
+</html>
